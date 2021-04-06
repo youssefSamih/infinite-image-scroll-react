@@ -1,0 +1,102 @@
+import { DefaultTheme } from 'styled-components';
+
+const theme: DefaultTheme = {
+  fonts: {
+    weight: {
+      hairline: '100',
+      thin: '200',
+      light: '300',
+      normal: '400',
+      medium: '500',
+      semibold: '600',
+      bold: '700',
+      extrabold: '800',
+      black: '900',
+    },
+    size: {
+      xs: '0.7em',
+      sm: '0.8125em',
+      sm2: '0.938em',
+      base: '1em',
+      lg: '1.125em',
+      xl: '1.25em',
+      xl2: '1.4em',
+      xl3: '1.5em',
+      xl4: '1.875em',
+      xl5: '2.25em',
+      xl6: '2.5em',
+      xl7: '3em',
+      xl8: '3.125em',
+      xl9: '3.175em',
+      xl10: '4em',
+      xl11: '4.2em',
+    },
+  },
+  colors: {
+    black: {
+      200: '#1F1F25',
+      300: '#333333',
+      400: '#222222',
+      500: '#121212',
+      600: '#383840',
+      900: '#000',
+    },
+    grey: {
+      100: '#f3f3f5',
+      200: '#DDDDDD',
+      300: '#aaaaaa',
+      400: '#999999',
+      500: '#aaaa',
+      600: '#f6f6f6',
+      700: '#424249',
+      800: '#dadada',
+      900: '#25282D',
+    },
+    white: '#fff',
+    vividTangerine: '#ff7f7f',
+    lightCoral: '#F08585',
+    primary: {
+      lightest: '#d3f0fc',
+      lighter: '#d1f3ff',
+      light: '#14bcff',
+      main: '#21B4EF',
+      dark: '#18a2da',
+    },
+    secondary: {
+      light: '#39c7ff',
+      main: '#21B4EF',
+      dark: '#18a2da',
+    },
+    stateColors: {
+      danger: {
+        lighter: '#ffe2e6',
+        light: '#f3445f',
+        main: '#e33751',
+        dark: '#c83047',
+        darker: '#c21f30',
+        darkest: '#C21F30',
+      },
+      success: {
+        lighter: '#caefcf',
+        light: '#70d47c',
+        main: '#67c272',
+        dark: '#5dae67',
+      },
+      info: {
+        lighter: '#c4ebfb',
+        light: '#7ED3F6',
+        main: '#14bcff',
+        dark: '#21b4ef',
+      },
+    },
+  },
+  breakpoints: {
+    xs: '0px',
+    sm: '600px',
+    md: '960px',
+    lg: '1280px',
+    xl: '1920px',
+  },
+};
+
+export default theme;
