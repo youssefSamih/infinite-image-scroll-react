@@ -1,15 +1,13 @@
 const withPlugins = require('next-compose-plugins');
 
 const nextConfig = {
-	poweredByHeader: false,
-	webpack: (config) => {
-		config.devtool = 'source-map';
-		config.node.global = false;
+  poweredByHeader: false,
+  webpack: (config) => {
+    config.devtool = 'source-map';
+    config.node.global = false;
 
-		return config;
-	},
+    return config;
+  },
 };
 
-module.exports = withPlugins(
-	nextConfig
-);
+module.exports = withPlugins([], nextConfig);
