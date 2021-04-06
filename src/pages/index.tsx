@@ -1,9 +1,10 @@
+import SearchInput from 'modules/Home/components/SearchInput';
 import React from 'react';
 import Layout from 'ui/Layout';
 
 const Home = () => {
   return (
-    <Layout>
+    <Layout Component={SearchInput}>
       <div>Home</div>
     </Layout>
   );
