@@ -1,10 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-interface globalTypesStyles {
-  backgroundColor?: string;
-}
-
-export default createGlobalStyle<globalTypesStyles>`
+export default createGlobalStyle`
   *, ::after, ::before {
     box-sizing: border-box;
   }
@@ -20,8 +16,7 @@ export default createGlobalStyle<globalTypesStyles>`
 
   body {
     margin: 0;
-    background: ${({ backgroundColor }) =>
-      backgroundColor ? backgroundColor : '#f3f3f5'};
+    background: '#f3f3f5';
 		color: #000;
     height: 100%;
   }
