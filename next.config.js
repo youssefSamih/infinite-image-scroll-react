@@ -8,6 +8,9 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    domains: ['via.placeholder.com', 'randomuser.me'],
+  },
 };
 
 module.exports = withPlugins([], nextConfig);
