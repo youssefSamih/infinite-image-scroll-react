@@ -1,7 +1,7 @@
 import SearchInput from 'modules/Home/components/SearchInput';
 import UserList from 'modules/Home/components/UserList/Index';
+import UserProvider from 'modules/Home/provider/UserProvider';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import React from 'react';
 import api from 'service/api';
 import Layout from 'ui/Layout';
 
@@ -10,7 +10,9 @@ const Home = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <Layout Component={SearchInput}>
-      <UserList data={usersData} />
+      <UserProvider>
+        <UserList data={usersData} />
+      </UserProvider>
     </Layout>
   );
 };

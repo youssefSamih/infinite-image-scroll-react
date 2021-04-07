@@ -1,9 +1,11 @@
+import { SaveDataUser } from 'modules/Home/actions/userAction';
+import { useUserData } from 'modules/Home/provider/UserProvider';
 import React from 'react';
 import { Flex } from 'react-flex-ready';
 import useInfiniteScroll from 'react-infinite-scroll-hook';
 import api from 'service/api';
 import Card from 'ui/Card';
-import { UserListContainer } from './style';
+import { Loading, LoadingText, UserListContainer } from './style';
 
 interface UserListProps {
   data: {
@@ -33,20 +35,27 @@ interface UserListProps {
 }
 
 const UserList = ({ data }: UserListProps) => {
-  const [state, setState] = React.useState({
-    userList: data,
-    loading: false,
-    page: 1,
-    hasNextPage: true,
-  });
+  const { state, dispatch } = useUserData();
+  React.useEffect(() => {
+    SaveDataUser(dispatch, {
+      userList: data,
+      page: state.page + 1,
+      hasNextPage: true,
+      loading: false,
+    });
+  }, []);
   const loadMore = () => {
-    setState({ ...state, loading: true });
+    SaveDataUser(dispatch, {
+      ...state,
+      loading: false,
+    });
     api.get(`/?page=${state.page}&results=20`).then((res) => {
-      setState({
+      const oldUserList = state.userList ? [...state.userList] : [];
+      SaveDataUser(dispatch, {
         ...state,
-        userList: [...state.userList, ...res.data.results],
+        userList: [...oldUserList, ...res.data.results],
         page: state.page + 1,
-        hasNextPage: state.userList.length <= res.data.results,
+        hasNextPage: oldUserList.length <= res.data.results,
         loading: false,
       });
     });
@@ -57,21 +66,16 @@ const UserList = ({ data }: UserListProps) => {
     onLoadMore: loadMore,
     rootMargin: '0px 0px 400px 0px',
   });
-  const loadingCSS = {
-    height: '100px',
-    margin: '30px',
-  };
-  const loadingTextCSS = { display: state.loading ? 'block' : 'none' };
   return (
     <UserListContainer>
       <Flex>
-        {state.userList.map((val) => {
+        {state.userList?.map((val: any) => {
           return <Card key={`${val.id.value}${val.name.first}`} {...val} />;
         })}
       </Flex>
-      <div ref={infiniteRef} style={loadingCSS}>
-        <span style={loadingTextCSS}>Loading...</span>
-      </div>
+      <Loading ref={infiniteRef}>
+        <LoadingText loading={state.loading}>Loading...</LoadingText>
+      </Loading>
     </UserListContainer>
   );
 };
