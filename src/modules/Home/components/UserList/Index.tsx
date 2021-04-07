@@ -41,7 +41,6 @@ const UserList = ({ data }: UserListProps) => {
   React.useEffect(() => {
     SaveDataUser(dispatch, {
       userList: data,
-      page: state.page + 1,
       hasNextPage: true,
       loading: false,
     });
