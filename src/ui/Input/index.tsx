@@ -16,6 +16,7 @@ const Input = ({
     <InputContainer {...{ width }}>
       {label && <Label>{label}</Label>}
       <InputStyle
+        data-testid="input-id"
         id={name}
         aria-label={label}
         {...{ name, type, placeholder, required, autocomplete, onChange }}
