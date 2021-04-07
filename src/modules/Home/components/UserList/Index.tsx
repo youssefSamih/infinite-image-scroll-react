@@ -46,16 +46,20 @@ const UserList = ({ data }: UserListProps) => {
       loading: false,
     });
     if (settingState.country !== '' && settingState.country !== null) {
-      getData(settingState.country);
+      getData(settingState.country, 1);
     }
   }, []);
-  const getData = (nat?: string) => {
+  const getData = (nat?: string, page?: number) => {
     SaveDataUser(dispatch, {
       ...state,
       loading: true,
     });
     api
-      .get(`/?page=${state.page}&results=20&${nat ? 'nat=' + nat : ''}`)
+      .get(
+        `/?page=${page ? page : state.page}&results=20&${
+          nat ? 'nat=' + nat : ''
+        }`
+      )
       .then((res) => {
         const oldUserList = state.userList ? [...state.userList] : [];
         SaveDataUser(dispatch, {
