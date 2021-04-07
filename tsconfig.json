@@ -19,7 +19,10 @@
     "target": "esnext",
     "baseUrl": "./src",
     "typeRoots": ["./types", "./node_modules/@types"],
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "paths": {
+      "test-utils": ["./__tests__/test-utils"]
+    }
   },
   "exclude": ["node_modules", "./types"],
   "include": ["**/*.ts", "**/*.tsx"]
