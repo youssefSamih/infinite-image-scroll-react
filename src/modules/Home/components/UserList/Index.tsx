@@ -46,30 +46,30 @@ const UserList = ({ data }: UserListProps) => {
       loading: false,
     });
     if (settingState.country !== '' && settingState.country !== null) {
-      getData(settingState.country, 1);
+      getData(settingState.country);
     }
   }, []);
-  const getData = (nat?: string, page?: number) => {
+  const getData = async (nat?: string) => {
     SaveDataUser(dispatch, {
       ...state,
       loading: true,
     });
-    api
-      .get(
-        `/?page=${page ? page : state.page}&results=20&${
-          nat ? 'nat=' + nat : ''
-        }`
-      )
-      .then((res) => {
-        const oldUserList = state.userList ? [...state.userList] : [];
-        SaveDataUser(dispatch, {
-          ...state,
-          userList: [...oldUserList, ...res.data.results],
-          page: state.page + 1,
-          hasNextPage: oldUserList.length <= res.data.results,
-          loading: false,
+    try {
+      await api
+        .get(`/?page=${state.page}&results=20&${nat ? 'nat=' + nat : ''}`)
+        .then((res) => {
+          const oldUserList = state.userList ? [...state.userList] : [];
+          SaveDataUser(dispatch, {
+            ...state,
+            userList: [...oldUserList, ...res.data.results],
+            page: state.page + 1,
+            hasNextPage: oldUserList.length <= res.data.results,
+            loading: false,
+          });
         });
-      });
+    } catch (error) {
+      console.error(error);
+    }
   };
   const [infiniteRef] = useInfiniteScroll({
     loading: state.loading,
@@ -90,7 +90,7 @@ const UserList = ({ data }: UserListProps) => {
         })}
       </Flex>
       <Loading ref={infiniteRef}>
-        <LoadingText load={!state.loading}>Loading...</LoadingText>
+        <LoadingText load={state.loading}>Loading...</LoadingText>
       </Loading>
     </UserListContainer>
   );

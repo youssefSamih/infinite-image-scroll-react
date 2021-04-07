@@ -9,6 +9,21 @@ import { SaveSettingData } from 'modules/settings/actions/settingAction';
 const FormSettings = () => {
   const { state, dispatch } = useSettingData();
   const [value, setState] = React.useState(state.country);
+  const StockCountryInLocalStorage = React.useCallback(async () => {
+    value &&
+      typeof localStorage !== 'undefined' &&
+      (await localStorage.setItem('@country', value));
+  }, [value]);
+  React.useEffect(() => {
+    const country =
+      typeof localStorage !== 'undefined' && localStorage.getItem('@country');
+    SaveSettingData(dispatch, {
+      country: country,
+    });
+  }, []);
+  React.useEffect(() => {
+    StockCountryInLocalStorage();
+  }, [value]);
   const onChange = (
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
   ) => {
