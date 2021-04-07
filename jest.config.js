@@ -9,7 +9,7 @@ module.exports = {
     'interfaces',
     'pages',
   ],
-  setupFiles: ['./setupTests.ts'],
+  setupFiles: ['./setupTests.tsx'],
   collectCoverageFrom: [
     'src/**/{!(styles|style|docsData|__coverage__|global_style),}.(ts|tsx)',
   ],

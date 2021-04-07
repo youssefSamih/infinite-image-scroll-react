@@ -15,4 +15,8 @@ jest.mock('next/dynamic', () => () => {
   return DynamicComponent;
 });
 
+jest.mock('next/image', () => ({ src, alt }: { src: string; alt: string }) => (
+  <img src={src} alt={alt} />
+));
+
 export {};

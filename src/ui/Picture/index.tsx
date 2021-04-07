@@ -28,7 +28,7 @@ const Picture = ({ uri, alt, height }: PictureProps) => {
     );
   }
   return (
-    <ImageContainer>
+    <ImageContainer data-testid="picture">
       <PictureImage heightImage={height}>
         <source
           srcSet="https://via.placeholder.com/1000x595?text=user+image"
