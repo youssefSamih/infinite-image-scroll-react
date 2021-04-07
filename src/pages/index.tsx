@@ -9,11 +9,11 @@ const Home = ({
   usersData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
-    <Layout Component={SearchInput}>
-      <UserProvider>
+    <UserProvider>
+      <Layout Component={SearchInput}>
         <UserList data={usersData} />
-      </UserProvider>
-    </Layout>
+      </Layout>
+    </UserProvider>
   );
 };
 
