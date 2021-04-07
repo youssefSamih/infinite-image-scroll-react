@@ -13,6 +13,6 @@ export interface InputProps {
   required?: boolean;
   autocomplete?: string;
   value?: string;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   width?: number;
 }
