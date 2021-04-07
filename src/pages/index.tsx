@@ -16,7 +16,7 @@ const Home = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const usersData = await api.get('/?page=1&results=20&');
+  const usersData = await api.get('/?page=1&results=20');
   return {
     props: { usersData: usersData.data.results },
   };
