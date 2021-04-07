@@ -1,35 +1,10 @@
+import { CardProps } from 'interfaces';
 import React from 'react';
 import { Item } from 'react-flex-ready';
 import Modal from 'ui/Modal';
 import Picture from 'ui/Picture';
 import { Details, TextItem } from 'ui/sharedStyles';
 import { CardContainer, Title } from './style';
-
-interface CardProps {
-  id: string;
-  picture: {
-    large?: string;
-  };
-  name: {
-    first: string;
-    last: string;
-  };
-  login: {
-    username: string;
-  };
-  email: string;
-  location: {
-    city: string;
-    state: string;
-    postcode: number;
-    street: {
-      number: number;
-      name: string;
-    };
-  };
-  phone: string;
-  cell: string;
-}
 
 const Card = ({ id, picture, name, login, email, ...rest }: CardProps) => {
   return (
