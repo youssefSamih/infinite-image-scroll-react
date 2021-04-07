@@ -3,13 +3,21 @@ import SelectInput from 'ui/SelectInput';
 import { FormSettingsContainer } from './style';
 import optionsData from './options.json';
 import Button from 'ui/Button';
+import { useSettingData } from 'modules/settings/provider/SettingProvider';
+import { SaveSettingData } from 'modules/settings/actions/settingAction';
 
 const FormSettings = () => {
   const [value, setState] = React.useState('');
+  const { state: _, dispatch } = useSettingData();
   const onChange = (
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
   ) => {
     setState(e.target.value);
+  };
+  const Save = () => {
+    SaveSettingData(dispatch, {
+      country: value,
+    });
   };
   return (
     <FormSettingsContainer>
@@ -21,7 +29,7 @@ const FormSettings = () => {
           </option>
         ))}
       </SelectInput>
-      <Button>Save</Button>
+      <Button onClick={Save}>Save</Button>
     </FormSettingsContainer>
   );
 };

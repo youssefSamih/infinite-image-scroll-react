@@ -1,11 +1,14 @@
 import FormSettings from 'modules/settings/components/FormSettings';
+import SettingProvider from 'modules/settings/provider/SettingProvider';
 import React from 'react';
 import Layout from 'ui/Layout';
 
 const Settings = () => {
   return (
     <Layout>
-      <FormSettings />
+      <SettingProvider>
+        <FormSettings />
+      </SettingProvider>
     </Layout>
   );
 };
