@@ -1,7 +1,7 @@
 import { InputContainerProps } from 'interfaces';
 import styled from 'styled-components';
 
-export const InputStyle = styled.input`
+export const SelectStyle = styled.select`
   font-size: 1em;
   font-weight: ${({ theme }) => theme.fonts.weight.light};
   padding: 0.5rem 1rem;
@@ -43,7 +43,7 @@ export const Label = styled.label`
   color: ${({ theme }) => `${theme.colors.grey[700]}`};
 `;
 
-export const InputContainer = styled.div<InputContainerProps>`
+export const SelectContainer = styled.div<InputContainerProps>`
   display: flex;
   align-items: center;
   width: ${({ width }) => (width ? `${width}px` : '100%')};

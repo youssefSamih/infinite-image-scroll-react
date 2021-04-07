@@ -1,18 +1,6 @@
-import React, { ChangeEvent } from 'react';
+import { InputProps } from 'interfaces';
+import React from 'react';
 import { InputContainer, InputStyle, Label } from './style';
-
-interface InputProps {
-  id?: string;
-  type?: string;
-  name?: string;
-  label?: string;
-  placeholder?: string;
-  required?: boolean;
-  autocomplete?: string;
-  value?: string;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  width?: number;
-}
 
 const Input = ({
   name,
