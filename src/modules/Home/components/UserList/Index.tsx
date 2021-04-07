@@ -69,8 +69,13 @@ const UserList = ({ data }: UserListProps) => {
   return (
     <UserListContainer>
       <Flex>
-        {state.userList?.map((val: any) => {
-          return <Card key={`${val.id.value}${val.name.first}`} {...val} />;
+        {state.userList?.map((val: any, i) => {
+          return (
+            <Card
+              key={`${val.id.value}${val.name.first}`}
+              {...{ ...val, id: i + 2 }}
+            />
+          );
         })}
       </Flex>
       <Loading ref={infiniteRef}>

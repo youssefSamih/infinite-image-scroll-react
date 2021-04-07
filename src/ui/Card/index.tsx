@@ -6,6 +6,7 @@ import { Details, TextItem } from 'ui/sharedStyles';
 import { CardContainer, Title } from './style';
 
 interface CardProps {
+  id: string;
   picture: {
     large?: string;
   };
@@ -30,10 +31,17 @@ interface CardProps {
   cell: string;
 }
 
-const Card = ({ picture, name, login, email, ...rest }: CardProps) => {
+const Card = ({ id, picture, name, login, email, ...rest }: CardProps) => {
   return (
     <Modal data={rest}>
-      <CardContainer as={Item} col={3} colTablet={6} colMobile={12} gap={2}>
+      <CardContainer
+        as={Item}
+        col={3}
+        colTablet={6}
+        colMobile={12}
+        gap={2}
+        tabIndex={id}
+      >
         <Title>
           {name.first} {name.last}
         </Title>
