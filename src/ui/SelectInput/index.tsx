@@ -19,6 +19,7 @@ const SelectInput: React.FC<InputProps> = ({
         id={name}
         aria-label={label}
         defaultValue={value}
+        data-testid="option"
         {...{ name, placeholder, required, onChange, value }}
       >
         {children}
