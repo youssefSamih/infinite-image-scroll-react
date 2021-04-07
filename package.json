@@ -21,6 +21,7 @@
     "react-dom": "^17.0.1",
     "react-flex-ready": "^1.2.4",
     "react-infinite-scroll-hook": "^4.0.0",
+    "reactjs-popup": "^2.0.4",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
