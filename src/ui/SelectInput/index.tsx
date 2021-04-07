@@ -10,6 +10,7 @@ const SelectInput: React.FC<InputProps> = ({
   placeholder,
   required,
   onChange,
+  value,
 }) => {
   return (
     <SelectContainer width={width}>
@@ -17,7 +18,8 @@ const SelectInput: React.FC<InputProps> = ({
       <SelectStyle
         id={name}
         aria-label={label}
-        {...{ name, placeholder, required, onChange }}
+        defaultValue={value}
+        {...{ name, placeholder, required, onChange, value }}
       >
         {children}
       </SelectStyle>

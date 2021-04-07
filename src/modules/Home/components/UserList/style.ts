@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface LoadingTextProps {
-  loading: boolean;
+  load: boolean;
 }
 export const UserListContainer = styled.div`
   padding-top: 3rem;
@@ -16,5 +16,5 @@ export const Loading = styled.div`
 `;
 
 export const LoadingText = styled.span<LoadingTextProps>`
-  display: ${({ loading }) => (loading ? 'block' : 'none')};
+  display: ${({ load }) => (load ? 'block' : 'none')};
 `;

@@ -1,5 +1,6 @@
 import { SaveDataUser } from 'modules/Home/actions/userAction';
 import { useUserData } from 'modules/Home/provider/UserProvider';
+import { useSettingData } from 'modules/settings/provider/SettingProvider';
 import React from 'react';
 import { Flex } from 'react-flex-ready';
 import useInfiniteScroll from 'react-infinite-scroll-hook';
@@ -36,6 +37,7 @@ interface UserListProps {
 
 const UserList = ({ data }: UserListProps) => {
   const { state, dispatch } = useUserData();
+  const { state: settingState } = useSettingData();
   React.useEffect(() => {
     SaveDataUser(dispatch, {
       userList: data,
@@ -43,27 +45,32 @@ const UserList = ({ data }: UserListProps) => {
       hasNextPage: true,
       loading: false,
     });
+    if (settingState.country !== '' && settingState.country !== null) {
+      getData(settingState.country);
+    }
   }, []);
-  const loadMore = () => {
+  const getData = (nat?: string) => {
     SaveDataUser(dispatch, {
       ...state,
-      loading: false,
+      loading: true,
     });
-    api.get(`/?page=${state.page}&results=20`).then((res) => {
-      const oldUserList = state.userList ? [...state.userList] : [];
-      SaveDataUser(dispatch, {
-        ...state,
-        userList: [...oldUserList, ...res.data.results],
-        page: state.page + 1,
-        hasNextPage: oldUserList.length <= res.data.results,
-        loading: false,
+    api
+      .get(`/?page=${state.page}&results=20&${nat ? 'nat=' + nat : ''}`)
+      .then((res) => {
+        const oldUserList = state.userList ? [...state.userList] : [];
+        SaveDataUser(dispatch, {
+          ...state,
+          userList: [...oldUserList, ...res.data.results],
+          page: state.page + 1,
+          hasNextPage: oldUserList.length <= res.data.results,
+          loading: false,
+        });
       });
-    });
   };
   const [infiniteRef] = useInfiniteScroll({
     loading: state.loading,
     hasNextPage: state.hasNextPage,
-    onLoadMore: loadMore,
+    onLoadMore: getData,
     rootMargin: '0px 0px 400px 0px',
   });
   return (
@@ -79,7 +86,7 @@ const UserList = ({ data }: UserListProps) => {
         })}
       </Flex>
       <Loading ref={infiniteRef}>
-        <LoadingText loading={state.loading}>Loading...</LoadingText>
+        <LoadingText load={!state.loading}>Loading...</LoadingText>
       </Loading>
     </UserListContainer>
   );

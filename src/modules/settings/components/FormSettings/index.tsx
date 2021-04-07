@@ -7,8 +7,8 @@ import { useSettingData } from 'modules/settings/provider/SettingProvider';
 import { SaveSettingData } from 'modules/settings/actions/settingAction';
 
 const FormSettings = () => {
-  const [value, setState] = React.useState('');
-  const { state: _, dispatch } = useSettingData();
+  const { state, dispatch } = useSettingData();
+  const [value, setState] = React.useState(state.country);
   const onChange = (
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
   ) => {

@@ -11,8 +11,11 @@ export type SettingActionTypes = {
   };
 };
 
+const country =
+  typeof localStorage !== 'undefined' && localStorage.getItem('@country');
+
 export const INITIAL_STATE: SettingState = {
-  country: '',
+  country: country ? country : '',
 };
 
 const settingReducer = (
