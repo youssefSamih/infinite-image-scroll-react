@@ -13,7 +13,7 @@ Randomuser application developed using React (Next js):
 ## Getting Started
 
 I developed this app using next js with server side rendering and typescript
-and because i lose state in server side rendering i stock the country setting in localStorage
+and i stock the country setting in localStorage.
 To install all dependencies, you need to run the following command:
 
 ```sh
